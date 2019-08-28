@@ -5,7 +5,7 @@ ENV GOPATH="/go" \
     RemotePath="mediaefs:" \
     ConfigDir="/config" \
     ConfigName=".rclone.conf" \
-    MountCommands="--allow-other \
+    MountCommands="--allow-other" \
     UnmountCommands="-u -z"
 
 ## Alpine with Go Git
