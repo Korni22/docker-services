@@ -9,7 +9,7 @@ ENV GOPATH="/go" \
     UnmountCommands="-u -z"
 
 ## Alpine with Go Git
-RUN apk add --no-cache --update ca-certificates fuse fuse-dev wget \
+RUN apk add --no-cache --update ca-certificates fuse wget \
         && wget https://downloads.rclone.org/rclone-current-linux-amd64.zip \
 	&& unzip rclone-current-linux-amd64.zip \
 	&& mv rclone-*/rclone /usr/sbin/rclone \
