@@ -12,7 +12,7 @@ ENV GOPATH="/go" \
 RUN apk add --no-cache --update ca-certificates fuse fuse-dev \
         && curl https://downloads.rclone.org/rclone-current-linux-amd64.zip --output rclone-current-linux-amd64.zip \
 	&& unzip rclone-current-linux-amd64.zip \
-	&& mv rclone-*/rclone /usr/sbin/rclone
+	&& mv rclone-*/rclone /usr/sbin/rclone \
 	&& rm -rf /tmp/* /var/cache/apk/* /var/lib/apk/lists/*
 
 ADD start.sh /start.sh
