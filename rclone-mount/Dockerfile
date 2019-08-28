@@ -3,24 +3,20 @@ FROM alpine
 ENV GOPATH="/go" \
     AccessFolder="/mnt" \
     RemotePath="mediaefs:" \
-    MountPoint="/mnt/mediaefs" \
     ConfigDir="/config" \
     ConfigName=".rclone.conf" \
-    MountCommands="--allow-other --allow-non-empty" \
+    MountCommands="--allow-other \
     UnmountCommands="-u -z"
 
 ## Alpine with Go Git
-RUN apk add --no-cache --update alpine-sdk ca-certificates go git fuse fuse-dev \
-	&& go get -u -v github.com/ncw/rclone \
-	&& cp /go/bin/rclone /usr/sbin/ \
-	&& rm -rf /go \
-	&& apk del alpine-sdk go git \
+RUN apk add --no-cache --update ca-certificates fuse fuse-dev \
+        && curl https://downloads.rclone.org/rclone-current-linux-amd64.zip --output rclone-current-linux-amd64.zip \
+	&& unzip rclone-current-linux-amd64.zip \
+	&& mv rclone-*/rclone /usr/sbin/rclone
 	&& rm -rf /tmp/* /var/cache/apk/* /var/lib/apk/lists/*
 
 ADD start.sh /start.sh
 RUN chmod +x /start.sh 
-
-VOLUME ["/mnt"]
 
 CMD ["/start.sh"]
 
