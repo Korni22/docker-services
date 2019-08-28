@@ -5,7 +5,7 @@ RUN apk add --no-cache --update ca-certificates fuse wget \
         && wget https://downloads.rclone.org/rclone-current-linux-amd64.zip \
 	&& unzip rclone-current-linux-amd64.zip \
 	&& mv rclone-*/rclone /usr/sbin/rclone \
-	&& apk del wget
+	&& apk del wget \
 	&& rm -rf /tmp/* /var/cache/apk/* /var/lib/apk/lists/* /rclone*
 
 CMD ["/usr/sbin/rclone mount $MountCommands $RemotePath $AccessFolder"]
