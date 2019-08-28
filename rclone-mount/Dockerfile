@@ -18,7 +18,7 @@ RUN apk add --no-cache --update ca-certificates fuse wget \
 # ADD start.sh /start.sh
 # RUN chmod +x /start.sh 
 
-CMD ["/usr/sbin/rclone --config $ConfigPath mount $RemotePath $MountCommands"]
+CMD ["/usr/sbin/rclone --config $ConfigPath mount $MountCommands"]
 
 # Use this docker Options in run
 # --cap-add SYS_ADMIN --device /dev/fuse --security-opt apparmor:unconfined
