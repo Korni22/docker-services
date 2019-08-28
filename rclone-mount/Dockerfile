@@ -15,10 +15,10 @@ RUN apk add --no-cache --update ca-certificates fuse fuse-dev wget \
 	&& mv rclone-*/rclone /usr/sbin/rclone \
 	&& rm -rf /tmp/* /var/cache/apk/* /var/lib/apk/lists/*
 
-ADD start.sh /start.sh
-RUN chmod +x /start.sh 
+# ADD start.sh /start.sh
+# RUN chmod +x /start.sh 
 
-CMD ["/start.sh"]
+CMD ["/usr/sbin/rclone --config $ConfigPath mount $RemotePath $MountCommands"]
 
 # Use this docker Options in run
 # --cap-add SYS_ADMIN --device /dev/fuse --security-opt apparmor:unconfined
